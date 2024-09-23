@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Paket Wisata</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Pemesanan Paket Wisata</h1>
+    </header>
+
+    <main>
+        <section id="paket-list">
+            <h2>Daftar Paket Wisata</h2>
+            <div id="paket-container"></div>
+        </section>
+
+        <section id="form-section">
+            <h2>Formulir Pemesanan</h2>
+            <form id="booking-form">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+
+                <label for="paket">Paket Wisata:</label>
+                <select id="paket" required>
+                    <option value="" disabled selected>Pilih paket wisata</option>
+                </select>
+
+                <button type="submit">Pesan Sekarang</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
