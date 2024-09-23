@@ -1,41 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan Paket Wisata</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Aplikasi Pemesanan Paket Wisata Eropa - Versi Kompleks</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+        }
+        header {
+            background: linear-gradient(90deg, #0072c6, #00509e);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .search-container input {
+            width: 70%;
+            padding: 12px;
+            border: 2px solid #0072c6;
+            border-radius: 6px;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+        .search-container input:focus {
+            box-shadow: 0 0 10px rgba(0, 114, 198, 0.5);
+        }
+        .search-container select {
+            padding: 12px;
+            border-radius: 6px;
+            border: 2px solid #0072c6;
+        }
+        .search-container button {
+            padding: 12px 20px;
+            background-color: #00509e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-container button:hover {
+            background-color: #00397e;
+        }
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .category-item {
+            flex: 1;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 0 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .category-item:hover {
+            background-color: #0072c6;
+            color: white;
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+        .packages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .package {
+            background-color: #e3f2fd;
+            border: 2px solid #0072c6;
+            border-radius: 10px;
+            width: 30%;
+            margin-bottom: 30px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .package:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .package img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .package h3 {
+            margin-top: 15px;
+            color: #00509e;
+        }
+        .package p {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        .rating {
+            color: #FFC107;
+        }
+        .btn {
+            background-color: #00509e;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #00397e;
+        }
+        footer {
+            background-color: #0072c6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Pemesanan Paket Wisata</h1>
-    </header>
 
-    <main>
-        <section id="paket-list">
-            <h2>Daftar Paket Wisata</h2>
-            <div id="paket-container"></div>
-        </section>
+<header>
+    <h1>Aplikasi Pemesanan Paket Wisata Eropa - Versi Kompleks</h1>
+</header>
 
-        <section id="form-section">
-            <h2>Formulir Pemesanan</h2>
-            <form id="booking-form">
-                <label for="name">Nama:</label>
-                <input type="text" id="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" required>
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Cari destinasi atau aktivitas...">
+        <select id="sort">
+            <option value="popular">Terpopuler</option>
+            <option value="priceLow">Harga Terendah</option>
+            <option value="priceHigh">Harga Tertinggi</option>
+        </select>
+        <button onclick="filterPackages()">Cari</button>
+    </div>
 
-                <label for="paket">Paket Wisata:</label>
-                <select id="paket" required>
-                    <option value="" disabled selected>Pilih paket wisata</option>
-                </select>
+    <div class="categories">
+        <div class="category-item" onclick="filterByCategory('budaya')">Budaya</div>
+        <div class="category-item" onclick="filterByCategory('alam')">Alam</div>
+        <div class="category-item" onclick="filterByCategory('petualangan')">Petualangan</div>
+    </div>
 
-                <button type="submit">Pesan Sekarang</button>
-            </form>
-        </section>
-    </main>
+    <div id="packages" class="packages">
+        <div class="package" data-category="budaya" data-price="8000000" data-description="Nikmati keindahan arsitektur dan budaya Venesia.">
+            <img src="https://example.com/venice.jpg" alt="Paket Wisata Venesia">
+            <h3>Paket Wisata Venesia</h3>
+            <p class="rating">★★★★☆</p>
+            <p>Rp 8.000.000 - 4 Hari 3 Malam</p>
+            <button class="btn" onclick="openModal('Paket Wisata Venesia', '8.000.000', 'Nikmati keindahan arsitektur dan budaya Venesia.')">Pesan Sekarang</button>
+        </div>
+        <div class="package" data-category="alam" data-price="9000000" data-description="Jelajahi keindahan Pegunungan Alpen.">
+            <img src="https://example.com/alps.jpg" alt="Paket Wisata Pegunungan Alpen">
+            <h3>Paket Wisata Pegunungan Alpen</h3>
+            <p class="rating">★★★★★</p>
+            <p>Rp 9.000.000 - 5 Hari 4 Malam</p>
+            <button class="btn" onclick="openModal('Paket Wisata Pegunungan Alpen', '9.000.000', 'Jelajahi keindahan Pegunungan Alpen.')">Pesan Sekarang</button>
+        </div>
+        <div class="package" data-category="petualangan" data-price="10000000" data-description="Petualangan seru di Fjords Norwegia.">
+            <img src="https://example.com/norway.jpg" alt="Paket Wisata Fjords Norwegia">
+            <h3>Paket Petualangan Fjords Norwegia</h3>
+            <p class="rating">★★★★★</p>
+            <p>Rp 10.000.000 - 6 Hari 5 Malam</p>
+            <button class="btn" onclick="openModal('Paket Petualangan Fjords Norwegia', '10.000.000', 'Petualangan seru di Fjords Norwegia.')">Pesan Sekarang</button>
+        </div>
+    </div>
+</div>
 
-    <script src="app.js"></script>
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p><strong>Harga:</strong> Rp <span id="modalPrice"></span></p>
+        <p><strong>Deskripsi:</strong> <span id="modalDescription"></span></p>
+        <button class="btn">Konfirmasi Pemesanan</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Aplikasi Pemesanan Paket Wisata Eropa</p>
+</footer>
+
+<script>
+    function openModal(title, price, description) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDescription').innerText = description;
+        document.getElementById('myModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    function filterPackages() {
+        // Implementasi fungsi filter sesuai kebutuhan
+    }
+
+    function filterByCategory(category) {
+        // Implementasi fungsi filter berdasarkan kategori
+    }
+</script>
+
 </body>
 </html>
