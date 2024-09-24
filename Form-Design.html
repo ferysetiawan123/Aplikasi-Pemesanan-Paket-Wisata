@@ -137,4 +137,39 @@
             </form>
         </section>
 
-     
+        <section id="konfirmasi">
+            <h2>Konfirmasi Pemesanan</h2>
+            <div id="konfirmasi-detail"></div>
+            <button onclick="resetForm()">Kembali</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aplikasi Pemesanan Paket Wisata</p>
+    </footer>
+
+    <script>
+        function showForm(nama, harga) {
+            document.getElementById('paket-nama').value = nama;
+            document.getElementById('paket-harga').value = harga;
+            document.getElementById('daftar-paket').style.display = 'none';
+            document.getElementById('form-pemesanan').style.display = 'block';
+        }
+
+        document.getElementById('pemesanan-form').onsubmit = function(event) {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const paket = document.getElementById('paket-nama').value;
+            const harga = document.getElementById('paket-harga').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const jumlahPeserta = document.getElementById('jumlah-peserta').value;
+
+            const totalHarga = harga * jumlahPeserta;
+
+            document.getElementById('konfirmasi-detail').innerHTML = `
+                <p>Nama: ${nama}</p>
+                <p>Paket yang dipesan: ${paket}</p>
+                <p>Harga per peserta: Rp ${harga}</p>
+                <p>Jumlah Peserta: ${jumlahPeserta}</p>
+                <p>Tanggal Perjalanan: ${tanggal}</p>
+                <
