@@ -53,3 +53,25 @@
     </div>
 
     <footer><p>&copy; 2024 Aplikasi Pemesanan Paket Wisata Eropa</p></footer>
+
+
+    <script>
+        const packages = [
+            { name: 'Paket Wisata Venesia', price: 8000000, description: 'Nikmati keindahan arsitektur dan budaya Venesia.', category: 'budaya', img: 'https://example.com/venice.jpg' },
+            { name: 'Paket Wisata Pegunungan Alpen', price: 9000000, description: 'Jelajahi keindahan Pegunungan Alpen.', category: 'alam', img: 'https://example.com/alps.jpg' },
+            { name: 'Paket Petualangan Fjords Norwegia', price: 10000000, description: 'Petualangan seru di Fjords Norwegia.', category: 'petualangan', img: 'https://example.com/norway.jpg' },
+            { name: 'Paket Wisata Paris', price: 11000000, description: 'Rasakan keindahan dan romantisme di kota cinta, Paris.', category: 'budaya', img: 'https://example.com/paris.jpg' },
+            { name: 'Paket Wisata Santorini', price: 12000000, description: 'Jelajahi pulau indah dengan pemandangan matahari terbenam yang menakjubkan.', category: 'alam', img: 'https://example.com/santorini.jpg' },
+            { name: 'Paket Wisata London', price: 9500000, description: 'Temukan sejarah dan budaya di ibu kota Inggris.', category: 'budaya', img: 'https://example.com/london.jpg' },
+            { name: 'Paket Wisata Rumania', price: 8500000, description: 'Eksplorasi kastil-kastil misterius dan pemandangan alam yang memukau.', category: 'petualangan', img: 'https://example.com/romania.jpg' }
+        ];
+
+        const displayPackages = (list) => {
+            const packageContainer = document.getElementById('packages');
+            packageContainer.innerHTML = list.map(pkg => `
+                <div class="package" onclick="openModal('${pkg.name}', ${pkg.price}, '${pkg.description}')">
+                    <img src="${pkg.img}" alt="${pkg.name}" style="width:100%; border-radius:10px;">
+                    <h3>${pkg.name}</h3>
+                    <p>Rp ${pkg.price.toLocaleString()}</p>
+                </div>`).join('');
+       
