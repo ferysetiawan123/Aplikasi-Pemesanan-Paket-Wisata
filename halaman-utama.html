@@ -74,4 +74,32 @@
                     <h3>${pkg.name}</h3>
                     <p>Rp ${pkg.price.toLocaleString()}</p>
                 </div>`).join('');
-       
+        };
+
+        const openModal = (title, price, description) => {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = price.toLocaleString();
+            document.getElementById('modalDescription').innerText = description;
+            document.getElementById('myModal').style.display = 'flex';
+        };
+
+        const closeModal = () => { document.getElementById('myModal').style.display = 'none'; };
+        const filterByCategory = (category) => { displayPackages(category === 'all' ? packages : packages.filter(pkg => pkg.category === category)); };
+        const sortPackages = () => {
+            const sorted = [...packages].sort((a, b) => document.getElementById('sort').value === 'priceLow' ? a.price - b.price : b.price - a.price);
+            displayPackages(sorted);
+        };
+        const filterPackages = () => {
+            const query = document.getElementById('search').value.toLowerCase();
+            displayPackages(packages.filter(pkg => pkg.name.toLowerCase().includes(query) || pkg.description.toLowerCase().includes(query)));
+        };
+        const confirmBooking = () => {
+            const date = document.getElementById('bookingDate').value;
+            alert(date ? `Pemesanan Anda untuk tanggal ${date} telah dikonfirmasi!` : "Silakan pilih tanggal pemesanan.");
+            closeModal();
+        };
+
+        displayPackages(packages);
+    </script>
+</body>
+</html>
