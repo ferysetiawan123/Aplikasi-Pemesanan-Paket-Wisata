@@ -112,4 +112,29 @@
             </div>
         </section>
 
-       
+        <section id="form-pemesanan">
+            <h2>Formulir Pemesanan</h2>
+            <form id="pemesanan-form">
+                <input type="hidden" id="paket-nama" name="paket-nama">
+                <input type="hidden" id="paket-harga" name="paket-harga">
+                
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="telepon">Nomor Telepon:</label>
+                <input type="tel" id="telepon" name="telepon" required>
+                
+                <label for="tanggal">Tanggal Perjalanan:</label>
+                <input type="date" id="tanggal" name="tanggal" required>
+                
+                <label for="jumlah-peserta">Jumlah Peserta:</label>
+                <input type="number" id="jumlah-peserta" name="jumlah-peserta" min="1" required>
+
+                <button type="submit">Konfirmasi Pemesanan</button>
+            </form>
+        </section>
+
+     
