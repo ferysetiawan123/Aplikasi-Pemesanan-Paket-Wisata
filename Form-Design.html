@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pemesanan Paket Wisata</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .paket {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .paket img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        #form-pemesanan, #konfirmasi {
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aplikasi Pemesanan Paket Wisata</h1>
+    </header>
+
+    <main>
+        <section id="daftar-paket">
+            <h2>Daftar Paket Wisata</h2>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Venesia" alt="Paket Wisata Venesia">
+                <h3>Paket Wisata Venesia</h3>
+                <p>Deskripsi: Menjelajahi keindahan kanal dan arsitektur Venesia.</p>
+                <p>Harga: Rp 8.000.000</p>
+                <p>Durasi: 4 hari 3 malam</p>
+                <button onclick="showForm('Paket Wisata Venesia', 3500000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Alpen" alt="Paket Wisata Pegunungan Alpen">
+                <h3>Paket Wisata Pegunungan Alpen</h3>
+                <p>Deskripsi: Petualangan mendaki dan menikmati pemandangan Alpen.</p>
+                <p>Harga: Rp 9.000.000</p>
+                <p>Durasi: 5 hari 4 malam</p>
+                <button onclick="showForm('Paket Wisata Pegunungan Alpen', 4000000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Fjords+Norwegia" alt="Paket Petualangan Fjords Norwegia">
+                <h3>Petualangan Fjords Norwegia</h3>
+                <p>Deskripsi: Menyusuri keindahan fjords Norwegia yang menakjubkan.</p>
+                <p>Harga: Rp 10.000.000</p>
+                <p>Durasi: 6 hari 5 malam</p>
+                <button onclick="showForm('Petualangan Fjords Norwegia', 5000000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Paris" alt="Paket Wisata Paris">
+                <h3>Paket Wisata Paris</h3>
+                <p>Deskripsi: Mengunjungi menara Eiffel dan menikmati suasana romantis Paris.</p>
+                <p>Harga: Rp 11.800.000</p>
+                <p>Durasi: 4 hari 3 malam</p>
+                <button onclick="showForm('Paket Wisata Paris', 3800000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Santorini" alt="Paket Wisata Santorini">
+                <h3>Paket Wisata Santorini</h3>
+                <p>Deskripsi: Menikmati pemandangan matahari terbenam yang menakjubkan di Santorini.</p>
+                <p>Harga: Rp 12.000.000</p>
+                <p>Durasi: 5 hari 4 malam</p>
+                <button onclick="showForm('Paket Wisata Santorini', 4500000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=London" alt="Paket Wisata London">
+                <h3>Paket Wisata London</h3>
+                <p>Deskripsi: Menjelajahi tempat-tempat ikonik di London.</p>
+                <p>Harga: Rp 9.500.000</p>
+                <p>Durasi: 4 hari 3 malam</p>
+                <button onclick="showForm('Paket Wisata London', 3200000)">Pesan Sekarang</button>
+            </div>
+            <div class="paket">
+                <img src="https://via.placeholder.com/300x200?text=Rumania" alt="Paket Wisata Rumania">
+                <h3>Paket Wisata Rumania</h3>
+                <p>Deskripsi: Mengunjungi kastil dan kota-kota indah di Rumania.</p>
+                <p>Harga: Rp 8.500.000</p>
+                <p>Durasi: 5 hari 4 malam</p>
+                <button onclick="showForm('Paket Wisata Rumania', 3600000)">Pesan Sekarang</button>
+            </div>
+        </section>
+
+        <section id="form-pemesanan">
+            <h2>Formulir Pemesanan</h2>
+            <form id="pemesanan-form">
+                <input type="hidden" id="paket-nama" name="paket-nama">
+                <input type="hidden" id="paket-harga" name="paket-harga">
+                
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" name="nama" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="telepon">Nomor Telepon:</label>
+                <input type="tel" id="telepon" name="telepon" required>
+                
+                <label for="tanggal">Tanggal Perjalanan:</label>
+                <input type="date" id="tanggal" name="tanggal" required>
+                
+                <label for="jumlah-peserta">Jumlah Peserta:</label>
+                <input type="number" id="jumlah-peserta" name="jumlah-peserta" min="1" required>
+
+                <button type="submit">Konfirmasi Pemesanan</button>
+            </form>
+        </section>
+
+        <section id="konfirmasi">
+            <h2>Konfirmasi Pemesanan</h2>
+            <div id="konfirmasi-detail"></div>
+            <button onclick="resetForm()">Kembali</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aplikasi Pemesanan Paket Wisata</p>
+    </footer>
+
+    <script>
+        function showForm(nama, harga) {
+            document.getElementById('paket-nama').value = nama;
+            document.getElementById('paket-harga').value = harga;
+            document.getElementById('daftar-paket').style.display = 'none';
+            document.getElementById('form-pemesanan').style.display = 'block';
+        }
+
+        document.getElementById('pemesanan-form').onsubmit = function(event) {
+            event.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const paket = document.getElementById('paket-nama').value;
+            const harga = document.getElementById('paket-harga').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const jumlahPeserta = document.getElementById('jumlah-peserta').value;
+
+            const totalHarga = harga * jumlahPeserta;
+
+            document.getElementById('konfirmasi-detail').innerHTML = `
+                <p>Nama: ${nama}</p>
+                <p>Paket yang dipesan: ${paket}</p>
+                <p>Harga per peserta: Rp ${harga}</p>
+                <p>Jumlah Peserta: ${jumlahPeserta}</p>
+                <p>Tanggal Perjalanan: ${tanggal}</p>
+                <
